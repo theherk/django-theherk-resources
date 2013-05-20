@@ -1,5 +1,5 @@
 import os
-from setuptools import setup
+from setuptools import setup, find_packages
 
 
 def read(fname):
@@ -7,8 +7,8 @@ def read(fname):
 
 setup(
     name='django-theherk-resources',
-    version='1.1',
-    packages=['resources'],
+    version='1.2',
+    packages=find_packages(),
     include_package_data=True,
     license='see file LICENSE',
     description='Django app for keeping data on organizations and people.',

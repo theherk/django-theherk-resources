@@ -1,0 +1,31 @@
+{% for person in people %}
+<ul class="contact">
+  <li class="name">{{ person.name_first }} {{ person.name_last }}</li>
+  {% if person.title %}<li class="title">{{ person.title }}</li>{% endif %}
+
+  {% for email in person.email_set.all %}
+  <li class="email"><a href="mailto:{{ email.address }}" title="email address">{{ email.address }}</a></li>
+  {% endfor %}
+
+  {% for phone in person.phone_set.all %}
+  <li class="phone">(816)536-2005</li>
+  {% endfor %}
+
+  {% for website in person.website_set.all %}
+  <li class="website"><a href="{{ website.url }}">{{ website.url }}</a></li>
+  {% endfor %}
+
+  {% if person.profile_set.all %}
+  <li class="social">
+    <ul>
+    {% for profile in person.profile_set.all %}
+      {% if profile.type == 'Facebook' %}<li class="facebook"><a href="{{ profile.url }}" title="facebook"><i class="icon-facebook-sign icon-2x"></i></a></li>{% endif %}
+      {% if profile.type == 'GooglePlus' %}<li class="plus"><a href="{{ profile.url }}" title="Google+"><i class="icon-google-plus-sign icon-2x"></i></a></li>{% endif %}
+      {% if profile.type == 'Linkedin' %}<li class="linkedin"><a href="{{ profile.url }}" title="Linkedin"><i class="icon-linkedin-sign icon-2x"></i></a></li>{% endif %}
+      {% if profile.type == 'Twitter' %}<li class="twitter"><a href="{{ profile.url }}" title="Twitter"><i class="icon-twitter-sign icon-2x"></i></a></li>{% endif %}
+    {% endfor %}
+    </ul>
+  </li>
+  {% endif %}
+</ul>
+{% endfor %}

@@ -9,8 +9,8 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         # Adding model 'Organization'
-        db.create_table('resources_organization', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+        db.create_table(u'resources_organization', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name', self.gf('django.db.models.fields.CharField')(max_length=100)),
             ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=100)),
             ('description', self.gf('django.db.models.fields.TextField')(null=True, blank=True)),
@@ -21,15 +21,15 @@ class Migration(SchemaMigration):
         db.send_create_signal('resources', ['Organization'])
 
         # Adding model 'PluginOrganization'
-        db.create_table('cmsplugin_pluginorganization', (
-            ('cmsplugin_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['cms.CMSPlugin'], unique=True, primary_key=True)),
+        db.create_table(u'cmsplugin_pluginorganization', (
+            (u'cmsplugin_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['cms.CMSPlugin'], unique=True, primary_key=True)),
             ('organization', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['resources.Organization'])),
         ))
         db.send_create_signal('resources', ['PluginOrganization'])
 
         # Adding model 'Person'
-        db.create_table('resources_person', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+        db.create_table(u'resources_person', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('name_first', self.gf('django.db.models.fields.CharField')(max_length=50)),
             ('name_last', self.gf('django.db.models.fields.CharField')(max_length=50)),
             ('slug', self.gf('django.db.models.fields.SlugField')(unique=True, max_length=100)),
@@ -41,8 +41,8 @@ class Migration(SchemaMigration):
         db.send_create_signal('resources', ['Person'])
 
         # Adding model 'Address'
-        db.create_table('resources_address', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+        db.create_table(u'resources_address', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('address1', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
             ('address2', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
             ('city', self.gf('django.db.models.fields.CharField')(max_length=64, null=True, blank=True)),
@@ -57,9 +57,9 @@ class Migration(SchemaMigration):
         db.send_create_signal('resources', ['Address'])
 
         # Adding model 'Email'
-        db.create_table('resources_email', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('address', self.gf('django.db.models.fields.EmailField')(max_length=200, null=True, blank=True)),
+        db.create_table(u'resources_email', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('address', self.gf('django.db.models.fields.EmailField')(max_length=200)),
             ('organization', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['resources.Organization'], null=True, blank=True)),
             ('person', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['resources.Person'], null=True, blank=True)),
             ('date_added', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
@@ -68,9 +68,9 @@ class Migration(SchemaMigration):
         db.send_create_signal('resources', ['Email'])
 
         # Adding model 'Phone'
-        db.create_table('resources_phone', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('number', self.gf('django.contrib.localflavor.us.models.PhoneNumberField')(max_length=20, null=True, blank=True)),
+        db.create_table(u'resources_phone', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('number', self.gf('django.contrib.localflavor.us.models.PhoneNumberField')(max_length=20)),
             ('type', self.gf('django.db.models.fields.CharField')(default='Mobile', max_length=20)),
             ('organization', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['resources.Organization'], null=True, blank=True)),
             ('person', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['resources.Person'], null=True, blank=True)),
@@ -80,9 +80,9 @@ class Migration(SchemaMigration):
         db.send_create_signal('resources', ['Phone'])
 
         # Adding model 'Website'
-        db.create_table('resources_website', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('url', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True)),
+        db.create_table(u'resources_website', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('url', self.gf('django.db.models.fields.URLField')(max_length=200)),
             ('organization', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['resources.Organization'], null=True, blank=True)),
             ('person', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['resources.Person'], null=True, blank=True)),
             ('date_added', self.gf('django.db.models.fields.DateTimeField')(auto_now_add=True, blank=True)),
@@ -91,9 +91,9 @@ class Migration(SchemaMigration):
         db.send_create_signal('resources', ['Website'])
 
         # Adding model 'Profile'
-        db.create_table('resources_profile', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('url', self.gf('django.db.models.fields.URLField')(max_length=200, null=True, blank=True)),
+        db.create_table(u'resources_profile', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('url', self.gf('django.db.models.fields.URLField')(max_length=200)),
             ('type', self.gf('django.db.models.fields.CharField')(default='GooglePlus', max_length=20)),
             ('organization', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['resources.Organization'], null=True, blank=True)),
             ('person', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['resources.Person'], null=True, blank=True)),
@@ -105,36 +105,36 @@ class Migration(SchemaMigration):
 
     def backwards(self, orm):
         # Deleting model 'Organization'
-        db.delete_table('resources_organization')
+        db.delete_table(u'resources_organization')
 
         # Deleting model 'PluginOrganization'
-        db.delete_table('cmsplugin_pluginorganization')
+        db.delete_table(u'cmsplugin_pluginorganization')
 
         # Deleting model 'Person'
-        db.delete_table('resources_person')
+        db.delete_table(u'resources_person')
 
         # Deleting model 'Address'
-        db.delete_table('resources_address')
+        db.delete_table(u'resources_address')
 
         # Deleting model 'Email'
-        db.delete_table('resources_email')
+        db.delete_table(u'resources_email')
 
         # Deleting model 'Phone'
-        db.delete_table('resources_phone')
+        db.delete_table(u'resources_phone')
 
         # Deleting model 'Website'
-        db.delete_table('resources_website')
+        db.delete_table(u'resources_website')
 
         # Deleting model 'Profile'
-        db.delete_table('resources_profile')
+        db.delete_table(u'resources_profile')
 
 
     models = {
         'cms.cmsplugin': {
             'Meta': {'object_name': 'CMSPlugin'},
             'changed_date': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'creation_date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2013, 5, 19, 0, 0)'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'creation_date': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'language': ('django.db.models.fields.CharField', [], {'max_length': '15', 'db_index': 'True'}),
             'level': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
             'lft': ('django.db.models.fields.PositiveIntegerField', [], {'db_index': 'True'}),
@@ -148,7 +148,7 @@ class Migration(SchemaMigration):
         'cms.placeholder': {
             'Meta': {'object_name': 'Placeholder'},
             'default_width': ('django.db.models.fields.PositiveSmallIntegerField', [], {'null': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'slot': ('django.db.models.fields.CharField', [], {'max_length': '50', 'db_index': 'True'})
         },
         'resources.address': {
@@ -158,7 +158,7 @@ class Migration(SchemaMigration):
             'city': ('django.db.models.fields.CharField', [], {'max_length': '64', 'null': 'True', 'blank': 'True'}),
             'date_added': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'organization': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['resources.Organization']", 'null': 'True', 'blank': 'True'}),
             'person': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['resources.Person']", 'null': 'True', 'blank': 'True'}),
             'state': ('django.contrib.localflavor.us.models.USStateField', [], {'max_length': '2', 'null': 'True', 'blank': 'True'}),
@@ -167,10 +167,10 @@ class Migration(SchemaMigration):
         },
         'resources.email': {
             'Meta': {'object_name': 'Email'},
-            'address': ('django.db.models.fields.EmailField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
+            'address': ('django.db.models.fields.EmailField', [], {'max_length': '200'}),
             'date_added': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'organization': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['resources.Organization']", 'null': 'True', 'blank': 'True'}),
             'person': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['resources.Person']", 'null': 'True', 'blank': 'True'})
         },
@@ -179,7 +179,7 @@ class Migration(SchemaMigration):
             'date_added': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             'description': ('django.db.models.fields.TextField', [], {'null': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'parent': ('django.db.models.fields.related.ForeignKey', [], {'blank': 'True', 'related_name': "'children'", 'null': 'True', 'to': "orm['resources.Organization']"}),
             'slug': ('django.db.models.fields.SlugField', [], {'unique': 'True', 'max_length': '100'})
@@ -188,7 +188,7 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Person'},
             'date_added': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'name_first': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'name_last': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
             'organization': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['resources.Organization']", 'null': 'True', 'blank': 'True'}),
@@ -199,35 +199,35 @@ class Migration(SchemaMigration):
             'Meta': {'object_name': 'Phone'},
             'date_added': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'number': ('django.contrib.localflavor.us.models.PhoneNumberField', [], {'max_length': '20', 'null': 'True', 'blank': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'number': ('django.contrib.localflavor.us.models.PhoneNumberField', [], {'max_length': '20'}),
             'organization': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['resources.Organization']", 'null': 'True', 'blank': 'True'}),
             'person': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['resources.Person']", 'null': 'True', 'blank': 'True'}),
             'type': ('django.db.models.fields.CharField', [], {'default': "'Mobile'", 'max_length': '20'})
         },
         'resources.pluginorganization': {
-            'Meta': {'object_name': 'PluginOrganization', 'db_table': "'cmsplugin_pluginorganization'", '_ormbases': ['cms.CMSPlugin']},
-            'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'}),
+            'Meta': {'object_name': 'PluginOrganization', 'db_table': "u'cmsplugin_pluginorganization'", '_ormbases': ['cms.CMSPlugin']},
+            u'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'}),
             'organization': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['resources.Organization']"})
         },
         'resources.profile': {
             'Meta': {'object_name': 'Profile'},
             'date_added': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'organization': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['resources.Organization']", 'null': 'True', 'blank': 'True'}),
             'person': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['resources.Person']", 'null': 'True', 'blank': 'True'}),
             'type': ('django.db.models.fields.CharField', [], {'default': "'GooglePlus'", 'max_length': '20'}),
-            'url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'})
+            'url': ('django.db.models.fields.URLField', [], {'max_length': '200'})
         },
         'resources.website': {
             'Meta': {'object_name': 'Website'},
             'date_added': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
-            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'organization': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['resources.Organization']", 'null': 'True', 'blank': 'True'}),
             'person': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['resources.Person']", 'null': 'True', 'blank': 'True'}),
-            'url': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'})
+            'url': ('django.db.models.fields.URLField', [], {'max_length': '200'})
         }
     }
 

@@ -85,8 +85,8 @@ class Email(models.Model):
     address = models.EmailField(
         _('address'),
         max_length=200,
-        null=True,
-        blank=True
+        null=False,
+        blank=False
     )
     organization = models.ForeignKey(
         'Organization',
@@ -125,8 +125,8 @@ class Phone(models.Model):
     """
     number = PhoneNumberField(
         _('number'),
-        null=True,
-        blank=True
+        null=False,
+        blank=False
     )
     TYPES_CHOICES = (
         ('Mobile', _('Mobile')),
@@ -176,8 +176,8 @@ class Website(models.Model):
     """
     url = models.URLField(
         _('url'),
-        null=True,
-        blank=True
+        null=False,
+        blank=False
     )
     organization = models.ForeignKey(
         'Organization',
@@ -215,8 +215,8 @@ class Profile(models.Model):
     """
     url = models.URLField(
         _('url'),
-        null=True,
-        blank=True
+        null=False,
+        blank=False
     )
     TYPES_CHOICES = (
         ('GooglePlus', _('Google+')),

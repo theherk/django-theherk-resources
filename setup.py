@@ -7,7 +7,7 @@ def read(fname):
 
 setup(
     name='django-theherk-resources',
-    version='1.5',
+    version='1.6',
     packages=find_packages(),
     include_package_data=True,
     install_requires=[
@@ -17,7 +17,7 @@ setup(
     description='Django app for keeping data on organizations and people.',
     long_description=read('README.md'),
     url='https://github.com/theherk/django-theherk-resources',
-    download_url='https://github.com/theherk/django-theherk-resources/archive/1.5.zip',
+    download_url='https://github.com/theherk/django-theherk-resources/archive/1.6.zip',
     author='Adam Sherwood',
     author_email='theherk@gmail.com',
     classifiers=[

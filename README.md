@@ -10,10 +10,11 @@ It also includes Django-cms plugins for displaying the data in a few different w
 Usage
 -----
 
-1. Add "resources" to your INSTALLED_APPS
+1. Add "resources" and "localflavor" to your INSTALLED_APPS
 
         INSTALLED_APPS = (
             ...
+            'localflavor',
             'resources',
         )
 

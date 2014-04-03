@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import datetime
+from south.utils import datetime_utils as datetime
 from south.db import db
 from south.v2 import SchemaMigration
 from django.db import models
@@ -21,7 +21,7 @@ class Migration(SchemaMigration):
         db.send_create_signal('resources', ['Organization'])
 
         # Adding model 'PluginOrganization'
-        db.create_table(u'cmsplugin_pluginorganization', (
+        db.create_table(u'resources_pluginorganization', (
             (u'cmsplugin_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['cms.CMSPlugin'], unique=True, primary_key=True)),
             ('organization', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['resources.Organization'])),
         ))
@@ -46,7 +46,7 @@ class Migration(SchemaMigration):
             ('address1', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
             ('address2', self.gf('django.db.models.fields.CharField')(max_length=100, null=True, blank=True)),
             ('city', self.gf('django.db.models.fields.CharField')(max_length=64, null=True, blank=True)),
-            ('state', self.gf('django.contrib.localflavor.us.models.USStateField')(max_length=2, null=True, blank=True)),
+            ('state', self.gf('localflavor.us.models.USStateField')(max_length=2, null=True, blank=True)),
             ('zipcode', self.gf('django.db.models.fields.CharField')(max_length=10, null=True, blank=True)),
             ('type', self.gf('django.db.models.fields.CharField')(default='Work', max_length=20)),
             ('organization', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['resources.Organization'], null=True, blank=True)),
@@ -70,7 +70,7 @@ class Migration(SchemaMigration):
         # Adding model 'Phone'
         db.create_table(u'resources_phone', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('number', self.gf('django.contrib.localflavor.us.models.PhoneNumberField')(max_length=20)),
+            ('number', self.gf('localflavor.us.models.PhoneNumberField')(max_length=20)),
             ('type', self.gf('django.db.models.fields.CharField')(default='Mobile', max_length=20)),
             ('organization', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['resources.Organization'], null=True, blank=True)),
             ('person', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['resources.Person'], null=True, blank=True)),
@@ -108,7 +108,7 @@ class Migration(SchemaMigration):
         db.delete_table(u'resources_organization')
 
         # Deleting model 'PluginOrganization'
-        db.delete_table(u'cmsplugin_pluginorganization')
+        db.delete_table(u'resources_pluginorganization')
 
         # Deleting model 'Person'
         db.delete_table(u'resources_person')
@@ -161,7 +161,7 @@ class Migration(SchemaMigration):
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'organization': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['resources.Organization']", 'null': 'True', 'blank': 'True'}),
             'person': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['resources.Person']", 'null': 'True', 'blank': 'True'}),
-            'state': ('django.contrib.localflavor.us.models.USStateField', [], {'max_length': '2', 'null': 'True', 'blank': 'True'}),
+            'state': ('localflavor.us.models.USStateField', [], {'max_length': '2', 'null': 'True', 'blank': 'True'}),
             'type': ('django.db.models.fields.CharField', [], {'default': "'Work'", 'max_length': '20'}),
             'zipcode': ('django.db.models.fields.CharField', [], {'max_length': '10', 'null': 'True', 'blank': 'True'})
         },
@@ -200,13 +200,13 @@ class Migration(SchemaMigration):
             'date_added': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'blank': 'True'}),
             'date_modified': ('django.db.models.fields.DateTimeField', [], {'auto_now': 'True', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'number': ('django.contrib.localflavor.us.models.PhoneNumberField', [], {'max_length': '20'}),
+            'number': ('localflavor.us.models.PhoneNumberField', [], {'max_length': '20'}),
             'organization': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['resources.Organization']", 'null': 'True', 'blank': 'True'}),
             'person': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['resources.Person']", 'null': 'True', 'blank': 'True'}),
             'type': ('django.db.models.fields.CharField', [], {'default': "'Mobile'", 'max_length': '20'})
         },
         'resources.pluginorganization': {
-            'Meta': {'object_name': 'PluginOrganization', 'db_table': "u'cmsplugin_pluginorganization'", '_ormbases': ['cms.CMSPlugin']},
+            'Meta': {'object_name': 'PluginOrganization', '_ormbases': ['cms.CMSPlugin']},
             u'cmsplugin_ptr': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['cms.CMSPlugin']", 'unique': 'True', 'primary_key': 'True'}),
             'organization': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['resources.Organization']"})
         },
